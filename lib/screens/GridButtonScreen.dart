@@ -59,10 +59,10 @@ class _GridButtonScreenState extends State<GridButtonScreen> {
     return Container(
       decoration: BoxDecoration(
         color: state.backgroundColor,
-        borderRadius: BorderRadius.circular(8.0),
+        borderRadius: BorderRadius.circular(1.0),
         border: Border.all(
-          color: Colors.amber,
-          width: 2.0,
+          color: Colors.blue,
+          width: 1.0,
         ),
         boxShadow: [
           BoxShadow(
@@ -74,9 +74,9 @@ class _GridButtonScreenState extends State<GridButtonScreen> {
         ],
       ),
       child: Material(
-        color: Colors.transparent,
+        color: Colors.white,
         child: InkWell(
-          borderRadius: BorderRadius.circular(8.0),
+          borderRadius: BorderRadius.circular(1.0),
           onTap:  () => _onButtonPressed(state, index),
           child: Stack(
             children: [
@@ -88,12 +88,16 @@ class _GridButtonScreenState extends State<GridButtonScreen> {
               Positioned(
                 bottom: 1,
                 right: 1,
-                child: Text(
-                  '${state.text}',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                child: CircleAvatar(
+                  backgroundColor: Colors.blue, // 背景颜色
+                  radius: 18, // 圆形半径
+                  child: Text(
+                    '${state.text}',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
