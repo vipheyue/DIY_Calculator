@@ -2,16 +2,18 @@ import 'package:flutter/material.dart';
 
 import '../models/ButtonState.dart';
 import '../utils/button_state_utils.dart'; // 导入工具类
+
 class GridButtonScreen extends StatefulWidget {
   const GridButtonScreen({super.key});
 
   @override
-  State<GridButtonScreen> createState() =>  _GridButtonScreenState();
+  State<GridButtonScreen> createState() => _GridButtonScreenState();
 }
 
 class _GridButtonScreenState extends State<GridButtonScreen> {
   // 创建20个按钮的状态集合 (4x5 = 20个按钮)
-  late List<ButtonState> buttonStates= ButtonStateUtils.createCalculatorButtonStates();
+  late List<ButtonState> buttonStates =
+  ButtonStateUtils.createCalculatorButtonStates();
 
   @override
   void initState() {
@@ -30,60 +32,69 @@ class _GridButtonScreenState extends State<GridButtonScreen> {
         child: Column(
           children: [
             // ✅ 1. 顶部滑动列表
-            SizedBox(
-              height: 160, // 高度可以根据内容调整
-              child: ListView.builder(
-                scrollDirection: Axis.vertical,
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return Container(
-                    width: 80,
-                    margin: EdgeInsets.only(right: 8),
-                    decoration: BoxDecoration(
-                      color: Colors.grey[300],
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Center(child: Text('Item $index')),
-                  );
-                },
-              ),
-            ),
-
-            SizedBox(height: 12),
-
-            // ✅ 2. 文本显示框，靠右显示
-            Container(
-              width: double.infinity,
-              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 16),
-              decoration: BoxDecoration(
-                color: Colors.grey[200],
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: Text(
-                  '显示内容',
-                  style: TextStyle(fontSize: 20, color: Colors.black87),
-                ),
-              ),
-            ),
-
-            SizedBox(height: 12),
-
-            // ✅ 3. 网格按钮布局
+            // 让顶部的 ListView 和中间的 Container 填充剩余空间
             Expanded(
-              child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4,
-                  crossAxisSpacing: 8.0,
-                  mainAxisSpacing: 8.0,
-                  childAspectRatio: 1.0,
-                ),
-                itemCount: 20,
-                itemBuilder: (context, index) {
-                  return _buildGridButton(buttonStates[index], index);
-                },
+              child: Column( // 使用一个新的 Column 来包裹希望填充空间的元素
+                children: [
+                  SizedBox(
+                    height: 160, // 高度可以根据内容调整
+                    child: ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      itemCount: 10,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          width: 80,
+                          margin: EdgeInsets.only(right: 8),
+                          decoration: BoxDecoration(
+                            color: Colors.grey[300],
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Center(child: Text('Item $index')),
+                        );
+                      },
+                    ),
+                  ),
+
+                  SizedBox(height: 12),
+
+                  // ✅ 2. 文本显示框，靠右显示
+                  Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+                    decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: Text(
+                        '显示内容',
+                        style: TextStyle(fontSize: 20, color: Colors.black87),
+                      ),
+                    ),
+                  ),
+                  // 你可以根据需要添加 Spacer() 来确保这部分内容尽可能填充
+                  // Spacer(), // 如果希望顶部和中间部分尽可能地向上推
+                ],
               ),
+            ),
+
+            SizedBox(height: 12),
+
+            // ✅ 3. 网格按钮布局 - 不再使用 Expanded，使其内容决定其高度，并靠底部
+            GridView.builder(
+              shrinkWrap: true, // 确保 GridView 只占用其内容所需的高度
+              physics: NeverScrollableScrollPhysics(), // 如果不希望 GridView 内部滚动，可以添加这个
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 4,
+                crossAxisSpacing: 8.0,
+                mainAxisSpacing: 8.0,
+                childAspectRatio: 1.0, // 你可以根据按钮的实际大小调整这个比例
+              ),
+              itemCount: 20,
+              itemBuilder: (context, index) {
+                return _buildGridButton(buttonStates[index], index);
+              },
             ),
           ],
         ),
@@ -113,7 +124,7 @@ class _GridButtonScreenState extends State<GridButtonScreen> {
         color: Colors.white,
         child: InkWell(
           borderRadius: BorderRadius.circular(1.0),
-          onTap:  () => _onButtonPressed(state, index),
+          onTap: () => _onButtonPressed(state, index),
           child: Stack(
             children: [
               Container(
@@ -129,8 +140,8 @@ class _GridButtonScreenState extends State<GridButtonScreen> {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(
-                      color: Colors.pink,       // 边框颜色
-                      width: 1,               // 边框宽度
+                      color: Colors.pink, // 边框颜色
+                      width: 1, // 边框宽度
                     ),
                   ),
                   child: CircleAvatar(
@@ -153,7 +164,6 @@ class _GridButtonScreenState extends State<GridButtonScreen> {
       ),
     );
   }
-
 
   void _onButtonPressed(ButtonState state, int index) {
     // 显示点击反馈
