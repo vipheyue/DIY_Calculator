@@ -11,13 +11,13 @@ class ButtonStateUtils {
     return [
       // 第一行按钮
       ButtonState(
-        text: '<-',
+        text: '删',
         backgroundColor: Colors.blue,
         backgroundImage: "assets/images/24.png",
         buttonType: ButtonType.delete,
       ),
       ButtonState(
-        text: '空',
+        text: '清',
         backgroundColor: Colors.transparent,
         backgroundImage: "assets/images/19.png",
         buttonType: ButtonType.clean,
@@ -25,13 +25,13 @@ class ButtonStateUtils {
       ButtonState(
         text: '-',
         backgroundColor: Colors.transparent,
-        backgroundImage: "assets/images/23.png",
+        backgroundImage: "assets/images/9.png",
         buttonType: ButtonType.wait1,
       ),
       ButtonState(
         text: '/',
         backgroundColor: Colors.transparent,
-        backgroundImage: "assets/images/1.png",
+        backgroundImage: "assets/images/2.png",
         buttonType: ButtonType.divide,
       ),
 
@@ -39,13 +39,13 @@ class ButtonStateUtils {
       ButtonState(
         text: '7',
         backgroundColor: Colors.transparent,
-        backgroundImage: "assets/images/19.png",
+        backgroundImage: "assets/images/24.png",
         buttonType: ButtonType.seven,
       ),
       ButtonState(
         text: '8',
         backgroundColor: Colors.transparent,
-        backgroundImage: "assets/images/17.png",
+        backgroundImage: "assets/images/19.png",
         buttonType: ButtonType.eight,
       ),
       ButtonState(
@@ -57,7 +57,7 @@ class ButtonStateUtils {
       ButtonState(
         text: 'X',
         backgroundColor: Colors.transparent,
-        backgroundImage: "assets/images/6.png",
+        backgroundImage: "assets/images/2.png",
         buttonType: ButtonType.multiply,
       ),
 
@@ -65,25 +65,25 @@ class ButtonStateUtils {
       ButtonState(
         text: '4',
         backgroundColor: Colors.transparent,
-        backgroundImage: "assets/images/9.png",
+        backgroundImage: "assets/images/24.png",
         buttonType: ButtonType.four,
       ),
       ButtonState(
         text: '5',
         backgroundColor: Colors.transparent,
-        backgroundImage: "assets/images/5.png",
+        backgroundImage: "assets/images/19.png",
         buttonType: ButtonType.five,
       ),
       ButtonState(
         text: '6',
         backgroundColor: Colors.transparent,
-        backgroundImage: "assets/images/6.png",
+        backgroundImage: "assets/images/9.png",
         buttonType: ButtonType.six,
       ),
       ButtonState(
         text: '-',
         backgroundColor: Colors.transparent,
-        backgroundImage: "assets/images/7.png",
+        backgroundImage: "assets/images/2.png",
         buttonType: ButtonType.divide,
       ),
 
@@ -91,25 +91,25 @@ class ButtonStateUtils {
       ButtonState(
         text: '1',
         backgroundColor: Colors.transparent,
-        backgroundImage: "assets/images/1.png",
+        backgroundImage: "assets/images/24.png",
         buttonType: ButtonType.one,
       ),
       ButtonState(
         text: '2',
         backgroundColor: Colors.transparent,
-        backgroundImage: "assets/images/2.png",
+        backgroundImage: "assets/images/19.png",
         buttonType: ButtonType.two,
       ),
       ButtonState(
         text: '3',
         backgroundColor: Colors.transparent,
-        backgroundImage: "assets/images/3.png",
+        backgroundImage: "assets/images/9.png",
         buttonType: ButtonType.three,
       ),
       ButtonState(
         text: '+',
         backgroundColor: Colors.transparent,
-        backgroundImage: "assets/images/8.png",
+        backgroundImage: "assets/images/2.png",
         buttonType: ButtonType.add,
       ),
 
@@ -117,25 +117,25 @@ class ButtonStateUtils {
       ButtonState(
         text: 'more',
         backgroundColor: Colors.transparent,
-        backgroundImage: "assets/images/16.png",
+        backgroundImage: "assets/images/24.png",
         buttonType: ButtonType.more,
       ),
       ButtonState(
         text: '0',
         backgroundColor: Colors.transparent,
-        backgroundImage: "assets/images/0.png",
+        backgroundImage: "assets/images/19.png",
         buttonType: ButtonType.zero,
       ),
       ButtonState(
         text: '.',
         backgroundColor: Colors.transparent,
-        backgroundImage: "assets/images/11.png",
+        backgroundImage: "assets/images/9.png",
         buttonType: ButtonType.dot,
       ),
       ButtonState(
         text: '=',
         backgroundColor: Colors.transparent,
-        backgroundImage: "assets/images/1.png",
+        backgroundImage: "assets/images/2.png",
         buttonType: ButtonType.calculate,
       ),
     ];

@@ -18,10 +18,6 @@ class _GridButtonScreenState extends State<GridButtonScreen> {
     super.initState();
   }
 
-  void initializeButtonStates() {
-    // 直接初始化列表
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,17 +27,65 @@ class _GridButtonScreenState extends State<GridButtonScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 4, // 横向4个按钮
-            crossAxisSpacing: 8.0,
-            mainAxisSpacing: 8.0,
-            childAspectRatio: 1.0, // 正方形按钮
-          ),
-          itemCount: 20, // 总共20个按钮 (4x5)
-          itemBuilder: (context, index) {
-            return _buildGridButton(buttonStates[index], index);
-          },
+        child: Column(
+          children: [
+            // ✅ 1. 顶部滑动列表
+            SizedBox(
+              height: 160, // 高度可以根据内容调整
+              child: ListView.builder(
+                scrollDirection: Axis.vertical,
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return Container(
+                    width: 80,
+                    margin: EdgeInsets.only(right: 8),
+                    decoration: BoxDecoration(
+                      color: Colors.grey[300],
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Center(child: Text('Item $index')),
+                  );
+                },
+              ),
+            ),
+
+            SizedBox(height: 12),
+
+            // ✅ 2. 文本显示框，靠右显示
+            Container(
+              width: double.infinity,
+              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+              decoration: BoxDecoration(
+                color: Colors.grey[200],
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: Text(
+                  '显示内容',
+                  style: TextStyle(fontSize: 20, color: Colors.black87),
+                ),
+              ),
+            ),
+
+            SizedBox(height: 12),
+
+            // ✅ 3. 网格按钮布局
+            Expanded(
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 4,
+                  crossAxisSpacing: 8.0,
+                  mainAxisSpacing: 8.0,
+                  childAspectRatio: 1.0,
+                ),
+                itemCount: 20,
+                itemBuilder: (context, index) {
+                  return _buildGridButton(buttonStates[index], index);
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -50,11 +94,11 @@ class _GridButtonScreenState extends State<GridButtonScreen> {
   Widget _buildGridButton(ButtonState state, int index) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.black,
-        borderRadius: BorderRadius.circular(2.0),
+        color: Colors.black12,
+        borderRadius: BorderRadius.circular(1.0),
         border: Border.all(
           color: Colors.transparent,
-          width: 2.0,
+          width: 1.0,
         ),
         boxShadow: [
           BoxShadow(
@@ -72,23 +116,33 @@ class _GridButtonScreenState extends State<GridButtonScreen> {
           onTap:  () => _onButtonPressed(state, index),
           child: Stack(
             children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
+              Container(
+                alignment: Alignment.center, // 关键：设置居中对齐
+                padding: EdgeInsets.all(10.0), // 添加内边距
                 child: Image.asset(state.backgroundImage!),
               ),
               // 显示数字
               Positioned(
-                bottom: 1,
-                right: 1,
-                child: CircleAvatar(
-                  backgroundColor: Colors.black, // 背景颜色
-                  radius: 18, // 圆形半径
-                  child: Text(
-                    '${state.text}',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                bottom: 2,
+                right: 2,
+                child: Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: Colors.pink,       // 边框颜色
+                      width: 1,               // 边框宽度
+                    ),
+                  ),
+                  child: CircleAvatar(
+                    backgroundColor: Colors.white, // 内部背景色
+                    radius: 18,
+                    child: Text(
+                      '${state.text}',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.pink[100],
+                      ),
                     ),
                   ),
                 ),
@@ -99,6 +153,7 @@ class _GridButtonScreenState extends State<GridButtonScreen> {
       ),
     );
   }
+
 
   void _onButtonPressed(ButtonState state, int index) {
     // 显示点击反馈
