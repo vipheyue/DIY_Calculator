@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/ButtonState.dart';
-
+import '../utils/button_state_utils.dart'; // 导入工具类
 class GridButtonScreen extends StatefulWidget {
   const GridButtonScreen({super.key});
 
@@ -11,23 +11,15 @@ class GridButtonScreen extends StatefulWidget {
 
 class _GridButtonScreenState extends State<GridButtonScreen> {
   // 创建20个按钮的状态集合 (4x5 = 20个按钮)
-  late List<ButtonState> buttonStates;
+  late List<ButtonState> buttonStates= ButtonStateUtils.createCalculatorButtonStates();
 
   @override
   void initState() {
     super.initState();
-    initializeButtonStates();
   }
 
   void initializeButtonStates() {
-    buttonStates = List.generate(20, (index) {
-      // 根据索引生成不同的状态
-      return ButtonState(
-        text: '${index + 1}',
-        backgroundColor:  Colors.blue,
-        buttonType: ButtonType.zero,
-      );
-    });
+    // 直接初始化列表
   }
 
   @override
@@ -58,11 +50,11 @@ class _GridButtonScreenState extends State<GridButtonScreen> {
   Widget _buildGridButton(ButtonState state, int index) {
     return Container(
       decoration: BoxDecoration(
-        color: state.backgroundColor,
-        borderRadius: BorderRadius.circular(1.0),
+        color: Colors.black,
+        borderRadius: BorderRadius.circular(2.0),
         border: Border.all(
-          color: Colors.blue,
-          width: 1.0,
+          color: Colors.transparent,
+          width: 2.0,
         ),
         boxShadow: [
           BoxShadow(
@@ -82,14 +74,14 @@ class _GridButtonScreenState extends State<GridButtonScreen> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Image.asset('assets/images/shengdanliwu.png'),
+                child: Image.asset(state.backgroundImage!),
               ),
               // 显示数字
               Positioned(
                 bottom: 1,
                 right: 1,
                 child: CircleAvatar(
-                  backgroundColor: Colors.blue, // 背景颜色
+                  backgroundColor: Colors.black, // 背景颜色
                   radius: 18, // 圆形半径
                   child: Text(
                     '${state.text}',

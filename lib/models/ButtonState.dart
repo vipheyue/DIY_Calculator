@@ -26,14 +26,21 @@ enum ButtonType {
   seven,
   eight,
   nine,
+  dot,
+
+  more,
+
+
   add,
   subtract,
   multiply,
   divide,
+  calculate,
+
   clean,
   delete,
-  dot,
-  calculate,
-  more,
+  wait1,
+  wait2,
+
 }
 
