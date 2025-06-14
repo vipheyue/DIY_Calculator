@@ -23,10 +23,6 @@ class _GridButtonScreenState extends State<GridButtonScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('网格按钮布局'),
-        backgroundColor: Colors.blueAccent,
-      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -34,52 +30,43 @@ class _GridButtonScreenState extends State<GridButtonScreen> {
             // ✅ 1. 顶部滑动列表
             // 让顶部的 ListView 和中间的 Container 填充剩余空间
             Expanded(
-              child: Column( // 使用一个新的 Column 来包裹希望填充空间的元素
-                children: [
-                  SizedBox(
-                    height: 160, // 高度可以根据内容调整
-                    child: ListView.builder(
-                      scrollDirection: Axis.vertical,
-                      itemCount: 10,
-                      itemBuilder: (context, index) {
-                        return Container(
-                          width: 80,
-                          margin: EdgeInsets.only(right: 8),
-                          decoration: BoxDecoration(
-                            color: Colors.grey[300],
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Center(child: Text('Item $index')),
-                        );
-                      },
-                    ),
+              child:
+                  ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    itemCount: 10,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        width: 80,
+                        margin: EdgeInsets.only(right: 8),
+                        decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Center(child: Text('Item $index')),
+                      );
+                    },
                   ),
-
-                  SizedBox(height: 12),
-
-                  // ✅ 2. 文本显示框，靠右显示
-                  Container(
-                    width: double.infinity,
-                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 16),
-                    decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Align(
-                      alignment: Alignment.centerRight,
-                      child: Text(
-                        '显示内容',
-                        style: TextStyle(fontSize: 20, color: Colors.black87),
-                      ),
-                    ),
-                  ),
-                  // 你可以根据需要添加 Spacer() 来确保这部分内容尽可能填充
-                  // Spacer(), // 如果希望顶部和中间部分尽可能地向上推
-                ],
+              ),
+            // ✅ 2. 文本显示框，靠右显示
+            Container(
+              width: double.infinity,
+              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+              decoration: BoxDecoration(
+                color: Colors.grey[200],
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: Text(
+                  '显示内容',
+                  style: TextStyle(fontSize: 20, color: Colors.black87),
+                ),
               ),
             ),
+            // 你可以根据需要添加 Spacer() 来确保这部分内容尽可能填充
+            // Spacer(), // 如果希望顶部和中间部分尽可能地向上推
 
-            SizedBox(height: 12),
+            // SizedBox(height: 2),
 
             // ✅ 3. 网格按钮布局 - 不再使用 Expanded，使其内容决定其高度，并靠底部
             GridView.builder(
