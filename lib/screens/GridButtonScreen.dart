@@ -24,7 +24,7 @@ class _GridButtonScreenState extends State<GridButtonScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(2.0),
         child: Column(
           children: [
             // ✅ 1. 顶部滑动列表
@@ -32,17 +32,27 @@ class _GridButtonScreenState extends State<GridButtonScreen> {
             Expanded(
               child:
                   ListView.builder(
+                    padding: EdgeInsets.only(bottom: 10), // 关键：设置底部边距为10
                     scrollDirection: Axis.vertical,
                     itemCount: 10,
                     itemBuilder: (context, index) {
-                      return Container(
-                        width: 80,
-                        margin: EdgeInsets.only(right: 8),
-                        decoration: BoxDecoration(
-                          color: Colors.grey[300],
-                          borderRadius: BorderRadius.circular(12),
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          padding: EdgeInsets.symmetric(horizontal: 6, vertical: 6),
+                          width: 100,
+                          margin: EdgeInsets.only(right: 8),
+                          decoration: BoxDecoration(
+                            color: Colors.pink[50],
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Align(
+                              alignment: Alignment.centerRight,
+                              child: Text(
+                            '显示内容',
+                            style: TextStyle(fontSize: 20, color: Colors.black87),
+                          )),
                         ),
-                        child: Center(child: Text('Item $index')),
                       );
                     },
                   ),
@@ -52,14 +62,14 @@ class _GridButtonScreenState extends State<GridButtonScreen> {
               width: double.infinity,
               padding: EdgeInsets.symmetric(horizontal: 12, vertical: 16),
               decoration: BoxDecoration(
-                color: Colors.grey[200],
+                color: Colors.pink[50],
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Align(
                 alignment: Alignment.centerRight,
                 child: Text(
                   '显示内容',
-                  style: TextStyle(fontSize: 20, color: Colors.black87),
+                  style: TextStyle(fontSize: 24, color: Colors.black87),
                 ),
               ),
             ),
@@ -69,19 +79,23 @@ class _GridButtonScreenState extends State<GridButtonScreen> {
             // SizedBox(height: 2),
 
             // ✅ 3. 网格按钮布局 - 不再使用 Expanded，使其内容决定其高度，并靠底部
-            GridView.builder(
-              shrinkWrap: true, // 确保 GridView 只占用其内容所需的高度
-              physics: NeverScrollableScrollPhysics(), // 如果不希望 GridView 内部滚动，可以添加这个
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 4,
-                crossAxisSpacing: 8.0,
-                mainAxisSpacing: 8.0,
-                childAspectRatio: 1.0, // 你可以根据按钮的实际大小调整这个比例
+            SizedBox(
+              child: GridView.builder(
+                padding: EdgeInsets.zero, // 关键：清除默认内边距
+                shrinkWrap: true, // 确保 GridView 只占用其内容所需的高度
+                physics: NeverScrollableScrollPhysics(), // 如果不希望 GridView 内部滚动，可以添加这个
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 4,
+                  crossAxisSpacing: 4.0,
+                  mainAxisSpacing: 4.0,
+                  childAspectRatio: 1.0, // 你可以根据按钮的实际大小调整这个比例
+                  mainAxisExtent:96,
+                ),
+                itemCount: 20,
+                itemBuilder: (context, index) {
+                  return _buildGridButton(buttonStates[index], index);
+                },
               ),
-              itemCount: 20,
-              itemBuilder: (context, index) {
-                return _buildGridButton(buttonStates[index], index);
-              },
             ),
           ],
         ),
@@ -90,6 +104,8 @@ class _GridButtonScreenState extends State<GridButtonScreen> {
   }
 
   Widget _buildGridButton(ButtonState state, int index) {
+    // return Text("data");
+
     return Container(
       decoration: BoxDecoration(
         color: Colors.black12,
@@ -116,7 +132,7 @@ class _GridButtonScreenState extends State<GridButtonScreen> {
             children: [
               Container(
                 alignment: Alignment.center, // 关键：设置居中对齐
-                padding: EdgeInsets.all(10.0), // 添加内边距
+                padding: EdgeInsets.all(2.0), // 添加内边距
                 child: Image.asset(state.backgroundImage!),
               ),
               // 显示数字
