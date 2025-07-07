@@ -2,7 +2,9 @@ import 'package:diy_calculator/utils/AppColors.dart';
 import 'package:flutter/material.dart';
 
 import '../models/ButtonState.dart';
-import '../utils/button_state_utils.dart'; // 导入工具类
+import '../utils/button_state_utils.dart';
+import '../widgets/CircleTextButton.dart';
+import '../widgets/CuteCircleButton.dart'; // 导入工具类
 
 class GridButtonScreen extends StatefulWidget {
   const GridButtonScreen({super.key});
@@ -143,29 +145,7 @@ class _GridButtonScreenState extends State<GridButtonScreen> {
             Positioned(
               bottom: 2,
               right: 26,
-              child: Container(
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    // color: Colors.pink, // 边框颜色
-                    color: AppColors.buttonBorder,
-
-                    width: 1, // 边框宽度
-                  ),
-                ),
-                child: CircleAvatar(
-                  backgroundColor: Colors.white, // 内部背景色
-                  radius: 18,
-                  child: Text(
-                    '${state.text}',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.buttonText,
-                    ),
-                  ),
-                ),
-              ),
+              child: CircleTextButton(text: state.text,borderColor:AppColors.buttonBorder,textColor:AppColors.buttonText),
             ),
           ],
         ),
@@ -176,34 +156,7 @@ class _GridButtonScreenState extends State<GridButtonScreen> {
   Widget _buildViewContent(ButtonState state) {
     switch (state.buttonType) {
       case ButtonType.seven:
-        return SizedBox(
-          width: 140,
-          height: 140,
-          child: Container(
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(
-                // color: Colors.pink, // 边框颜色
-                color: AppColors.buttonBorder,
-
-                width: 4, // 边框宽度
-              ),
-            ),
-            child: CircleAvatar(
-              backgroundColor: Colors.white, // 内部背景色
-              radius: 18,
-              child: Text(
-                '${state.text}',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.buttonText,
-                ),
-              ),
-            ),
-          ),
-        );
-
+        return CuteCircleButton(text:state.text);
       default:
         return Image.asset(state.backgroundImage!);
     }
