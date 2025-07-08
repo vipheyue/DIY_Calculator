@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../utils/AppColors.dart' show AppColors;
+
 class CuteCircleButton extends StatelessWidget {
   final String text;
   final double size;
@@ -12,7 +14,7 @@ class CuteCircleButton extends StatelessWidget {
     required this.text,
     this.size = 140,
     this.backgroundColor = Colors.white,
-    this.borderColor = Colors.pink,
+    this.borderColor = AppColors.borderColor,
     this.textColor = Colors.black,
   });
 
@@ -24,13 +26,13 @@ class CuteCircleButton extends StatelessWidget {
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: backgroundColor,
-        border: Border.all(color: borderColor, width: 4),
+        border: Border.all(color: borderColor, width: 3),
       ),
       alignment: Alignment.center,
       child: Text(
         text,
         style: TextStyle(
-          fontSize: size / 6,
+          fontSize: size / 3,
           fontWeight: FontWeight.bold,
           color: textColor,
         ),

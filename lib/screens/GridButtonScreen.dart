@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../models/ButtonState.dart';
 import '../utils/button_state_utils.dart';
-import '../widgets/CircleTextButton.dart';
+import '../widgets/ImageButtonWithText.dart' show ImageButtonWithText;
 import '../widgets/CuteCircleButton.dart'; // 导入工具类
 
 class GridButtonScreen extends StatefulWidget {
@@ -95,7 +95,6 @@ class _GridButtonScreenState extends State<GridButtonScreen> {
             Container(
               padding: EdgeInsets.symmetric(horizontal: 12, vertical: 16),
               color: Colors.pink[50], // 背景色
-
               // color: Color(0xFFFCECE6 ), // 背景色
               child: GridView.builder(
                 padding: EdgeInsets.zero,
@@ -133,32 +132,46 @@ class _GridButtonScreenState extends State<GridButtonScreen> {
       child: InkWell(
         borderRadius: BorderRadius.circular(1.0),
         onTap: () => _onButtonPressed(state, index),
-        child: Stack(
-          children: [
-            Container(
-              alignment: Alignment.center, // 关键：设置居中对齐
-              padding: EdgeInsets.all(2.0), // 添加内边距
-              // child: Image.asset(state.backgroundImage!),
-              child: _buildViewContent(state),
-            ),
-            // 显示数字
-            Positioned(
-              bottom: 2,
-              right: 26,
-              child: CircleTextButton(text: state.text,borderColor:AppColors.buttonBorder,textColor:AppColors.buttonText),
-            ),
-          ],
-        ),
+        child: _buildViewContent(state),
       ),
     );
   }
 
   Widget _buildViewContent(ButtonState state) {
     switch (state.buttonType) {
+      case ButtonType.one:
+      case ButtonType.two:
+      case ButtonType.three:
+      case ButtonType.add:
+
+      case ButtonType.four:
+      case ButtonType.five:
+      case ButtonType.six:
+      case ButtonType.subtract:
+
       case ButtonType.seven:
-        return CuteCircleButton(text:state.text);
+      case ButtonType.eight:
+      case ButtonType.nine:
+      case ButtonType.multiply:
+
+      case ButtonType.more:
+      case ButtonType.zero:
+      case ButtonType.dot:
+      case ButtonType.calculate:
+
+        return CuteCircleButton(
+          text: state.text,
+          backgroundColor:AppColors.buttonBackgroundColor,
+          textColor: AppColors.buttonTextColor,
+        );
       default:
-        return Image.asset(state.backgroundImage!);
+        // return Stack(child: Image.asset(state.backgroundImage!));
+        return ImageButtonWithText(
+          backgroundImage: state.backgroundImage!,
+          text: state.text,
+          borderColor: AppColors.borderColor,
+          textColor: AppColors.buttonTextColor,
+        );
     }
   }
 

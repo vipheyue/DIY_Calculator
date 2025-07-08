@@ -13,25 +13,25 @@ class ButtonStateUtils {
       ButtonState(
         text: '删',
         backgroundColor: Colors.blue,
-        backgroundImage: "assets/images/24.png",
+        backgroundImage: "assets/images/1.png",
         buttonType: ButtonType.delete,
       ),
       ButtonState(
         text: '清',
         backgroundColor: Colors.transparent,
-        backgroundImage: "assets/images/19.png",
+        backgroundImage: "assets/images/2.png",
         buttonType: ButtonType.clean,
       ),
       ButtonState(
         text: '-',
         backgroundColor: Colors.transparent,
-        backgroundImage: "assets/images/9.png",
+        backgroundImage: "assets/images/17.png",
         buttonType: ButtonType.wait1,
       ),
       ButtonState(
         text: '/',
         backgroundColor: Colors.transparent,
-        backgroundImage: "assets/images/2.png",
+        backgroundImage: "assets/images/24.png",
         buttonType: ButtonType.divide,
       ),
 
@@ -84,7 +84,7 @@ class ButtonStateUtils {
         text: '-',
         backgroundColor: Colors.transparent,
         backgroundImage: "assets/images/2.png",
-        buttonType: ButtonType.divide,
+        buttonType: ButtonType.subtract,
       ),
 
       // 第四行按钮
@@ -115,7 +115,7 @@ class ButtonStateUtils {
 
       // 第五行按钮
       ButtonState(
-        text: 'more',
+        text: 'M',
         backgroundColor: Colors.transparent,
         backgroundImage: "assets/images/24.png",
         buttonType: ButtonType.more,
