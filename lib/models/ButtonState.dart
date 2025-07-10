@@ -37,9 +37,9 @@ enum ButtonType {
   divide,
   calculate,
 
-  clean,
+  leftParentheses,
   delete,
-  wait1,
+  rightParentheses,
   wait2,
 
 }

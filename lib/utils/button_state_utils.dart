@@ -17,16 +17,16 @@ class ButtonStateUtils {
         buttonType: ButtonType.delete,
       ),
       ButtonState(
-        text: '清',
+        text: '(',
         backgroundColor: Colors.transparent,
         backgroundImage: "assets/images/2.png",
-        buttonType: ButtonType.clean,
+        buttonType: ButtonType.leftParentheses,
       ),
       ButtonState(
-        text: '-',
+        text: ')',
         backgroundColor: Colors.transparent,
         backgroundImage: "assets/images/17.png",
-        buttonType: ButtonType.wait1,
+        buttonType: ButtonType.rightParentheses,
       ),
       ButtonState(
         text: '/',
