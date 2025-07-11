@@ -1,6 +1,7 @@
+import 'package:diy_calculator/screens/CalculatorViewModel.dart';
 import 'package:flutter/material.dart';
 import 'screens/GridButtonScreen.dart';
-
+import 'package:provider/provider.dart';
 // 主应用入口
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -19,5 +20,10 @@ class MyApp extends StatelessWidget {
 }
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => CalculatorViewModel(),
+      child: const MyApp(),
+    ),
+  );
 }

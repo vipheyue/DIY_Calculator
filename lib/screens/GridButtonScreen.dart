@@ -1,10 +1,12 @@
-import 'package:diy_calculator/utils/AppColors.dart';
+import 'package:diy_calculator/config/AppColors.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../models/ButtonState.dart';
 import '../utils/button_state_utils.dart';
 import '../widgets/ImageButtonWithText.dart' show ImageButtonWithText;
-import '../widgets/CuteCircleButton.dart'; // 导入工具类
+import '../widgets/CuteCircleButton.dart';
+import 'CalculatorViewModel.dart'; // 导入工具类
 
 class GridButtonScreen extends StatefulWidget {
   const GridButtonScreen({super.key});
@@ -25,6 +27,8 @@ class _GridButtonScreenState extends State<GridButtonScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = Provider.of<CalculatorViewModel>(context);
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(2.0),
@@ -81,7 +85,7 @@ class _GridButtonScreenState extends State<GridButtonScreen> {
               child: Align(
                 alignment: Alignment.centerRight,
                 child: Text(
-                  '显示内容',
+                  viewModel.expression,
                   style: TextStyle(fontSize: 24, color: Colors.black87),
                 ),
               ),
@@ -176,6 +180,8 @@ class _GridButtonScreenState extends State<GridButtonScreen> {
   }
 
   void _onButtonPressed(ButtonState state, int index) {
+    final viewModel = Provider.of<CalculatorViewModel>(context, listen: false);
+    viewModel.input(state);
     // 显示点击反馈
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(

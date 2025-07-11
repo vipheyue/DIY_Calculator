@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utils/AppColors.dart' show AppColors;
+import '../config/AppColors.dart' show AppColors;
 
 class CuteCircleButton extends StatelessWidget {
   final String text;
